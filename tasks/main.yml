@@ -1,3 +1,11 @@
+---
+
+- name: register openssh-server version
+  shell: 'dpkg -s openssh-server | grep "^Version" | sed -re "s/^.*:([0-9]+\.[0-9]+).*/\1/"'
+  register: openssh_version
+  check_mode: no
+  changed_when: false
+
 - name: ensure openssh-server is present
   apt:
     pkg: openssh-server

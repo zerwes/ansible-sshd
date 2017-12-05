@@ -149,6 +149,8 @@ AllowUsers {{ sshd_allow_users|join(" ") }}
 AllowGroups {{ sshd_allow_groups|join(" ") }}
 {% endif %}
 
+{% if openssh_version and openssh_version.stdout | version_compare('6.7', '>=') %}
 # Specifies whether to remove an existing Unix-domain socket file for
 # local or remote port forwarding before creating a new one.
 StreamLocalBindUnlink {{ sshd_stream_local_bind_unlink }}
+{% endif %}
