@@ -1,3 +1,5 @@
+# vim: tabstop=2 expandtab shiftwidth=2 softtabstop=2 smartindent nu
+---
 - name: ensure openssh-server is present
   apt:
     pkg: openssh-server
@@ -17,6 +19,7 @@
   template:
     src: sshd_config.j2
     dest: /etc/ssh/sshd_config
+    backup: True
   notify: restart sshd
 
 - name: ensure sftp chroot group is present
